@@ -1,5 +1,5 @@
 from useful import stringToDatetime
-from datetime import timedelta
+# from datetime import timedelta
 
 class Flight:
 
@@ -21,8 +21,13 @@ class Flight:
         print(self.bagPrice)
 
 
+    '''
     def isTimeToTransferMoreThan(self, flight2, td):
         timeBetweenFlights = stringToDatetime(flight2.departure) - stringToDatetime(self.arrival)
         if timeBetweenFlights > timedelta(minutes=td):
             return True
         return False
+    '''
+
+    def timeToTransfer(self, next_flight):
+        return stringToDatetime(next_flight.departure) - stringToDatetime(self.arrival)

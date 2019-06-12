@@ -1,4 +1,5 @@
 from . import flight_list
+from datetime import timedelta
 
 class Journey(flight_list.FlightList):
 
@@ -13,14 +14,6 @@ class Journey(flight_list.FlightList):
         if not self.flightList:
             return True
         lastFlight = self.flightList[-1]
-        if ((not self.isDestinationVisited(nextFlight)) and \
-                lastFlight.isTimeToTransferMoreThan(nextFlight, minutesToTransfer)):
-            return True
-        return False
-
-
-
-    def addFlight(self, flight):
-        super().addFlight(flight)
-        self.print()
-
+        if self.isDestinationVisited(nextFlight):
+            return False
+        return lastFlight.timeToTransfer(nextFlight) >= timedelta(minutes=minutesToTransfer)

@@ -3,33 +3,36 @@ from objects import journey, flight_list
 from copy import deepcopy
 
 
-def addFlightToJourney(journey, flightList, minutesToTransferNeeded):
-    if not journey.flightList:
-        if not flightList.flightList:
-            print('No flights are possible')
-        else:
-            for flight in flightList.flightList:
-                journey.addFlight(flight)
-                addFlightToJourney(deepcopy(journey), flightList, minutesToTransferNeeded)
+def findAllJourneys(flightList, minutesToTransferNeeded):
+    if not flightList.flightList:
+        print('No flights are possible')
     else:
-        print('dostaneme se az sem?')
-        lastFlight = journey.flightList[-1]
-        flightsFromThePlace = flightList.flightsFromTheSource(lastFlight.destination)
-        for flight in flightsFromThePlace.flightList:
-            if journey.isTheFlightNextPossible(flight, minutesToTransferNeeded):
-                journey.addFlight(flight)
-                addFlightToJourney(deepcopy(journey), flightList, minutesToTransferNeeded)
+        for flight in flightList.flightList:
+            newJourney = journey.Journey()
+            newJourney.addFlight(flight)
+            newJourney.print()
+            addFlightToJourney(newJourney, flightList, minutesToTransferNeeded)
+
+
+def addFlightToJourney(theJourney, flightList, minutesToTransferNeeded):
+    lastFlight = theJourney.flightList[-1]
+    flightsFromThePlace = flightList.flightsFromTheSource(lastFlight.destination)
+    #flightsFromThePlace.print()
+    for flight in flightsFromThePlace.flightList:
+        if theJourney.isTheFlightNextPossible(flight, minutesToTransferNeeded):
+            theJourney.addFlight(flight)
+            theJourney.print()
+            if theJourney.flightList[0].source != theJourney.flightList[-1].destination:
+                addFlightToJourney(theJourney, flightList, minutesToTransferNeeded)
 
 
 
-def findAllJourneys(csvInput, bagsTaken, minutesToTransferNeeded):
+def initializeSearch(csvInput, bagsTaken, minutesToTransferNeeded):
     flightDicts = useful.csvToDicts(csvInput)
     allFlights = flight_list.FlightList()
     allFlights.uploadDict(flightDicts)
     allPossFlights = allFlights.flightsByBagsTaken(bagsTaken)
-    allPossFlights.print()
-    newJourney = journey.Journey()
-    addFlightToJourney(newJourney, allPossFlights, minutesToTransferNeeded)
+    findAllJourneys(allPossFlights, minutesToTransferNeeded)
 
 
 
