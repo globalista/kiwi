@@ -13,8 +13,8 @@ def get_parameters():
 
 
 
-def initializeSearch(csv_file):
-    flightDicts = useful.csvToDicts(csv_file)
+def initializeSearch():
+    flightDicts = useful.csvToDicts()
     allFlights = flightList.FlightList()
     allFlights.uploadDict(flightDicts)
     bagsTaken, minutesToTransferNeeded = get_parameters()
