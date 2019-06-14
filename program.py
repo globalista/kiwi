@@ -1,15 +1,25 @@
-from inputs import conditions
 import useful
-from find_all_journeys import initializeSearch
-
-bags_taken = conditions.BAGS_TAKEN
-minutes_to_transfer_needed = conditions.MINUTES_TO_TRANSFER_NEEDED
-csv_input = conditions.CSV_INPUT
+from objects import flightList
+from findAllJourneys import findAllJourneys
 
 
-print(bags_taken, minutes_to_transfer_needed)
-dicts = useful.csvToDicts(csv_input)
-print(dicts)
+def get_parameters():
 
-    
-initializeSearch(csv_input, bags_taken, minutes_to_transfer_needed)
+    bagsTaken = int(input('How many bags do you want to take? (0-2) '))
+    minutesToTransferNeeded = int(input('How many hours do you need to transfer? (1-3)'))
+    print()
+    return bagsTaken, minutesToTransferNeeded
+
+
+
+
+def initializeSearch(csv_file):
+    flightDicts = useful.csvToDicts(csv_file)
+    allFlights = flightList.FlightList()
+    allFlights.uploadDict(flightDicts)
+    bagsTaken, minutesToTransferNeeded = get_parameters()
+    allPossFlights = allFlights.flightsByBagsTaken(bagsTaken)
+    findAllJourneys(allPossFlights, bagsTaken, minutesToTransferNeeded)
+
+
+

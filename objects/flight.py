@@ -1,5 +1,4 @@
 from useful import stringToDatetime
-# from datetime import timedelta
 
 class Flight:
 

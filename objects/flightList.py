@@ -14,7 +14,6 @@ class FlightList:
     def print(self):
         for i in self.flightList:
             i.print()
-        print()
 
     def uploadDict(self, flightDictList):
         for i in flightDictList:

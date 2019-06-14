@@ -1,13 +1,9 @@
-from datetime import datetime, timedelta
-import csv
+from datetime import datetime
+import csv, sys
 
 
 def stringToDatetime(str):
     return datetime.strptime(str, '%Y-%m-%dT%H:%M:%S')
-
-
-def datetime_to_string(dt):
-    return datetime.strftime(dt)
 
 
 def csvToDicts(csv_file):
@@ -15,4 +11,11 @@ def csvToDicts(csv_file):
         a = [{k: v for k, v in row.items()}
              for row in csv.DictReader(f, skipinitialspace=False)]
     return a
+'''
 
+def csvToDicts():
+    a = [{k: v for k, v in row.items()}
+         for row in csv.DictReader(sys.stdin, skipinitialspace=False)]
+    print(a)
+    return a
+'''

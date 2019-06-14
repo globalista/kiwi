@@ -1,4 +1,3 @@
-from program import find_combinations
+from program import initializeSearch
 
-if __name__ == '__main__':
-    program(csv_input)
+initializeSearch('/home/vladena/python/kiwi/input.csv')
