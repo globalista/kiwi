@@ -2,7 +2,7 @@ from datetime import datetime
 import csv, sys
 
 
-def stringToDatetime(str):
+def string_to_datetime(str):
     return datetime.strptime(str, '%Y-%m-%dT%H:%M:%S')
 
 '''
@@ -13,7 +13,7 @@ def csvToDicts(csv_file):
     return a
 '''
 
-def csvToDicts():
+def csv_to_dicts():
     a = [{k: v for k, v in row.items()}
          for row in csv.DictReader(sys.stdin, skipinitialspace=False)]
     print(a)

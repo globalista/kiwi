@@ -1,27 +1,27 @@
-from . import flightList
+from . import flight_list
 from datetime import timedelta
 
-class Journey(flightList.FlightList):
+class Journey(flight_list.FlightList):
 
-    def isDestinationVisited(self, next_flight): # return False for the place where we started
-        for flight in self.flightList:
+    def is_destination_visited(self, next_flight): # return False for the place where we started
+        for flight in self.flight_list:
             if flight.destination == next_flight.destination:
                 return True
         return False
 
 
-    def isTheFlightNextPossible(self, nextFlight, timeToTransfer):
-        if not self.flightList:
+    def is_the_flight_next_possible(self, next_flight, time_to_transfer):
+        if not self.flight_list:
             return True
-        lastFlight = self.flightList[-1]
-        if self.isDestinationVisited(nextFlight):
+        last_flight = self.flight_list[-1]
+        if self.is_destination_visited(next_flight):
             return False
-        return lastFlight.timeToTransfer(nextFlight) >= timedelta(hours=timeToTransfer)
+        return last_flight.time_to_transfer(next_flight) >= timedelta(hours=time_to_transfer)
 
-    def priceForOneBag(self):
-        return sum([int(x.price) for x in self.flightList])
+    def price_for_one_bag(self):
+        return sum([int(x.price) for x in self.flight_list])
 
-    def printWithPriceForBags(self, bagsTaken):
+    def print_with_price_for_bags(self, bags_taken):
         super().print()
-        print(bagsTaken * self.priceForOneBag(), end='$\n\n')
+        print(bags_taken * self.price_for_one_bag(), end='$\n\n')
 

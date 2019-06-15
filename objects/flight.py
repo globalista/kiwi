@@ -1,32 +1,22 @@
-from useful import stringToDatetime
+from useful import string_to_datetime
 
 class Flight:
 
-    def __init__(self, flightDict):
-        self.source = flightDict['source']
-        self.destination = flightDict['destination']
-        self.departure = flightDict['departure']
-        self.arrival = flightDict['arrival']
-        self.flightNumber = flightDict['flight_number']
-        self.price = flightDict['price']
-        self.bagsAllowed = flightDict['bags_allowed']
-        self.bagPrice = flightDict['bag_price']
+    def __init__(self, flight_dict):
+        self.source = flight_dict['source']
+        self.destination = flight_dict['destination']
+        self.departure = flight_dict['departure']
+        self.arrival = flight_dict['arrival']
+        self.flight_number = flight_dict['flight_number']
+        self.price = flight_dict['price']
+        self.bags_allowed = flight_dict['bags_allowed']
+        self.bags_price = flight_dict['bag_price']
 
 
     def print(self):
-        for i in [self.source, self.destination, self.departure, self.arrival, self.flightNumber,
-                  self.price, self.bagsAllowed]:
-            print(i, end=',')
-        print(self.bagPrice)
+        print(self.source, self.destination, self.departure, self.arrival, self.flight_number,
+              self.price, self.bags_allowed, self.bags_price, sep=',')
 
 
-    '''
-    def isTimeToTransferMoreThan(self, flight2, td):
-        timeBetweenFlights = stringToDatetime(flight2.departure) - stringToDatetime(self.arrival)
-        if timeBetweenFlights > timedelta(minutes=td):
-            return True
-        return False
-    '''
-
-    def timeToTransfer(self, next_flight):
-        return stringToDatetime(next_flight.departure) - stringToDatetime(self.arrival)
+    def time_to_transfer(self, next_flight):
+        return string_to_datetime(next_flight.departure) - string_to_datetime(self.arrival)
