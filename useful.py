@@ -1,5 +1,5 @@
 from datetime import datetime
-import csv, sys
+import csv
 
 
 def string_to_datetime(str):
@@ -13,8 +13,7 @@ def csvToDicts(csv_file):
     return a
 '''
 
-def csv_to_dicts():
+def csv_to_dicts(csv_input):
     a = [{k: v for k, v in row.items()}
-         for row in csv.DictReader(sys.stdin, skipinitialspace=False)]
-    print(a)
+         for row in csv.DictReader(csv_input, skipinitialspace=False)]
     return a

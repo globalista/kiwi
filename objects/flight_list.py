@@ -1,4 +1,5 @@
 from objects import flight
+import sys
 
 
 class FlightList:
@@ -13,10 +14,20 @@ class FlightList:
         for i in self.flight_list:
             i.print()
 
+    '''
     def upload_dicts(self, flight_dicts):
         for i in flight_dicts:
             new_flight = flight.Flight(i)
             self.add_flight(new_flight)
+    '''
+
+    def upload_dicts(self, flight_dicts):
+        try:
+            for i in flight_dicts:
+                new_flight = flight.Flight(i)
+                self.add_flight(new_flight)
+        except (ValueError, TypeError) as err:
+            print(f'{err}', file=sys.stderr)
 
     def flights_by_bags_taken(self, bags_taken):
         new_flight_list = FlightList()

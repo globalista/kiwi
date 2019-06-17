@@ -19,7 +19,7 @@ class Journey(flight_list.FlightList):
         return last_flight.time_to_transfer(next_flight) >= timedelta(hours=time_to_transfer)
 
     def price_for_one_bag(self):
-        return sum([int(x.price) for x in self.flight_list])
+        return sum([x.price for x in self.flight_list])
 
     def print_with_price_for_bags(self, bags_taken):
         super().print()

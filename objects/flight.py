@@ -5,12 +5,12 @@ class Flight:
     def __init__(self, flight_dict):
         self.source = flight_dict['source']
         self.destination = flight_dict['destination']
-        self.departure = flight_dict['departure']
-        self.arrival = flight_dict['arrival']
+        self.departure = string_to_datetime(flight_dict['departure'])
+        self.arrival = string_to_datetime(flight_dict['arrival'])
         self.flight_number = flight_dict['flight_number']
-        self.price = flight_dict['price']
-        self.bags_allowed = flight_dict['bags_allowed']
-        self.bags_price = flight_dict['bag_price']
+        self.price = float(flight_dict['price'])
+        self.bags_allowed = int(flight_dict['bags_allowed'])
+        self.bags_price = float(flight_dict['bag_price'])
 
 
     def print(self):
@@ -19,4 +19,5 @@ class Flight:
 
 
     def time_to_transfer(self, next_flight):
-        return string_to_datetime(next_flight.departure) - string_to_datetime(self.arrival)
+        return next_flight.departure - self.arrival
+
