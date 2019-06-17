@@ -1,4 +1,10 @@
-from useful import string_to_datetime
+import datetime
+
+def string_to_datetime(str):
+    return datetime.datetime.strptime(str, '%Y-%m-%dT%H:%M:%S')
+
+def datetime_to_string(dt):
+    return dt.strftime('%Y-%m-%dT%H:%M:%S')
 
 class Flight:
 
@@ -14,7 +20,8 @@ class Flight:
 
 
     def print(self):
-        print(self.source, self.destination, self.departure, self.arrival, self.flight_number,
+        print(self.source, self.destination, datetime_to_string(self.departure),
+              datetime_to_string(self.arrival), self.flight_number,
               self.price, self.bags_allowed, self.bags_price, sep=',')
 
 
