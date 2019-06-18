@@ -20,18 +20,14 @@ class FlightList:
 
     def flights_by_bags_taken(self, bags_taken):
         new_flight_list = FlightList()
-        for flight in self.flight_list:
-            if int(flight.bags_allowed) >= bags_taken:
-                new_flight_list.add_flight(flight)
+        for fl in self.flight_list:
+            if int(fl.bags_allowed) >= bags_taken:
+                new_flight_list.add_flight(fl)
         return new_flight_list
 
     def flights_from_the_source(self, place):
         new_flight_list = FlightList()
-        for flight in self.flight_list:
-            if flight.source == place:
-                new_flight_list.add_flight(flight)
+        for fl in self.flight_list:
+            if fl.source == place:
+                new_flight_list.add_flight(fl)
         return new_flight_list
-
-
-
-

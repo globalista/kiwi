@@ -4,8 +4,8 @@ https://pw.engeto.com/
 #Usage
 
 
-Run as 'python3 find_combinations.py'
+Run as 'python3 find_combinations.py BAGS HOURS_TO_TRANSFER' to print journey for the specified parameters (BAGS - number of bags taken, HOURS_TO_TRANSFER - minimum time needed to transfer in hours)
 
-Reads csv input from stdin.
+Run as 'python3 find_combinations.py' to print journeys for all allowed paramater combinations.
 
-Search parameters (bags taken, hours to transefer needed) are specified as constants in find_combinations.py.
+The list of available flights is read as csv input from stdin.
